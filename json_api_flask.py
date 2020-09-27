@@ -3,6 +3,7 @@ from flask_cors import CORS
 from flask import jsonify, Flask
 import datetime as dt
 from datetime import timedelta
+from functions import Functions
 
 app = Flask(__name__) 
 CORS(app) # configura o cors
@@ -18,6 +19,7 @@ machine = 'Machine_01' # define máquina
 pre_end_ts = dt.datetime.now() - dt.timedelta(days=0) # data inicial predeterminada
 pre_start_ts = pre_end_ts - dt.timedelta(days=7) #data final predeterminada
 
+ft = Functions()
 
 @app.route('/variable_calc/', defaults={'machine': machine, 'start_ts': default_start, 'end_ts': default_end}) # retorna dados padrões
 @app.route('/variable_calc/<string:machine>/', defaults={'start_ts': default_start, 'end_ts': default_end}) # retorna maquina desejada e datas padrões
